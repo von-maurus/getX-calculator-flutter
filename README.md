@@ -1,6 +1,6 @@
 # calculadora
 
-A new Flutter project.
+GetX its more than a state management way of doing or more than a Library. Its almost a framework to this point...
 
 ## Getting Started
 
