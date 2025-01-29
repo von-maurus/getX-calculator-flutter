@@ -6,6 +6,28 @@ class CalculatorController extends GetxController {
   var secondOperand = ''.obs;
   var operator = ''.obs;
 
+  void toggleSign() {
+    if (operator.value.isEmpty) {
+      if (firstOperand.value.isNotEmpty) {
+        if (firstOperand.value.startsWith('-')) {
+          firstOperand.value = firstOperand.value.substring(1);
+        } else {
+          firstOperand.value = '-' + firstOperand.value;
+        }
+        display.value = firstOperand.value;
+      }
+    } else {
+      if (secondOperand.isNotEmpty) {
+        if (secondOperand.startsWith('-')) {
+          secondOperand.value = secondOperand.value.substring(1);
+        } else {
+          secondOperand.value = '-' + secondOperand.value;
+        }
+        display.value = secondOperand.value;
+      }
+    }
+  }
+
   void inputNumber(String number) {
     if (operator.isEmpty) {
       firstOperand.value += number;
@@ -39,7 +61,13 @@ class CalculatorController extends GetxController {
           result = num1 * num2;
           break;
         case '/':
-          result = num1 / num2;
+          if (num2 != 0) {
+            result = num1 / num2;
+          } else {
+            display.value = 'Error';
+            clear();
+            return;
+          }
           break;
       }
 
